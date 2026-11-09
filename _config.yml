@@ -1,0 +1,26 @@
+title: lucie.vonkova
+author: Lucie Vonková
+lang: cs
+description: Fotografie a básně Lucie Vonkové
+
+# Pokud web poběží na adrese typu uzivatel.github.io/nazev-repozitare,
+# napište sem "/nazev-repozitare". S vlastní doménou nechte prázdné.
+baseurl: ""
+
+collections:
+  poems:
+    output: true
+    permalink: /basne/:name/
+  photos:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: poems
+    values:
+      layout: poem
+
+exclude:
+  - README.md
+  - pages.yml.txt

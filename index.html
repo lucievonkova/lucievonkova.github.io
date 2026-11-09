@@ -1,0 +1,102 @@
+---
+layout: default
+title: Úvod
+---
+{% assign web = site.data.web %}
+{% assign photos = site.photos | sort: "poradi", "last" %}
+{% assign poems = site.poems | sort: "poradi", "last" %}
+{% assign hero = site.photos | where_exp: "p", "p.uvodni == true" | first %}
+{% unless hero %}{% assign hero = photos | first %}{% endunless %}
+
+<header class="hero">
+  {% if hero %}<img src="{{ hero.image | relative_url }}" alt="{{ hero.title | escape }}">{% endif %}
+  <div class="hero-txt">
+    <h1 class="hero-name">{{ site.author | split: " " | first }}<br><em>{{ site.author | split: " " | last }}</em></h1>
+    <div class="hero-side">
+      {% if web.uvod_basen_text and web.uvod_basen_text != "" %}
+        {%- assign _lines = web.uvod_basen_text | strip | escape | newline_to_br | split: "<br />" -%}
+        <p class="hero-poem">{% for _l in _lines %}{% assign _t = _l | strip %}{% if _t != "" %}<span class="l">{{ _t }}</span>{% endif %}{% endfor %}</p>
+        {% if web.uvod_basen_nazev and web.uvod_basen_nazev != "" %}<p class="label">— {{ web.uvod_basen_nazev }}</p>{% endif %}
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<section class="section" id="fotografie">
+  <div class="sec-head">
+    <h2>Fotografie</h2>
+    <span class="label">{{ photos.size }} snímků</span>
+  </div>
+  {% assign series = photos | map: "serie" | compact | uniq %}
+  {% assign real_series = 0 %}{% for s in series %}{% if s != "" %}{% assign real_series = real_series | plus: 1 %}{% endif %}{% endfor %}
+  {% if real_series > 1 %}
+  <nav class="series" aria-label="Série" style="margin-bottom:32px">
+    <button type="button" class="series-btn" data-serie="" aria-pressed="true">Vše</button>
+    {% for s in series %}{% if s != "" %}<button type="button" class="series-btn" data-serie="{{ s | escape }}" aria-pressed="false">{{ s }}</button>{% endif %}{% endfor %}
+  </nav>
+  {% endif %}
+  {% assign singles = "" | split: "" %}{% assign paired = "" | split: "" %}
+  {% for p in photos %}{% if p.dvojice and p.dvojice != "" %}{% assign paired = paired | push: p %}{% else %}{% assign singles = singles | push: p %}{% endif %}{% endfor %}
+  {% assign pair_names = paired | map: "dvojice" | uniq %}
+  <div class="grid">
+    {% for p in singles %}
+    {% capture cap %}{{ p.title }}{% if p.misto and p.misto != "" %}, {{ p.misto }}{% endif %}{% if p.rok and p.rok != "" %}, {{ p.rok }}{% endif %}{% endcapture %}
+    <button type="button" class="tile photo" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
+      <img src="{{ p.image | relative_url }}" alt="{{ p.title | escape }}" loading="lazy">
+      <span class="no">{{ cap | strip }}</span>
+    </button>
+    {% endfor %}
+  </div>
+  {% for name in pair_names %}
+  <div class="pair">
+    {% assign group = paired | where: "dvojice", name %}
+    {% for p in group %}
+    {% capture cap %}{{ p.title }}{% if p.misto and p.misto != "" %}, {{ p.misto }}{% endif %}{% if p.rok and p.rok != "" %}, {{ p.rok }}{% endif %}{% endcapture %}
+    <button type="button" class="tile photo" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
+      <img src="{{ p.image | relative_url }}" alt="{{ p.title | escape }}" loading="lazy">
+      <span class="no">{{ cap | strip }}</span>
+    </button>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+
+<section class="section alt" id="basne">
+  <div class="sec-head">
+    <h2>Básně</h2>
+    <span class="label">{{ poems.size }} textů</span>
+  </div>
+  <ul class="poem-list">
+    {% for p in poems %}
+    <li><a href="{{ p.url | relative_url }}"><span>{{ p.title }}</span></a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="kontakt">
+  {% assign has_bio = false %}{% if web.o_mne and web.o_mne != "" %}{% assign has_bio = true %}{% endif %}
+  <div class="sec-head">
+    <h2>{% if has_bio %}O mně{% else %}Kontakt{% endif %}</h2>
+    {% if has_bio %}<span class="label">Kontakt</span>{% endif %}
+  </div>
+  <div class="about{% unless has_bio %} solo{% endunless %}">
+    {% if has_bio %}<p class="about-text">{{ web.o_mne | strip | escape }}</p>{% endif %}
+    <div>
+      <p class="label" style="margin-bottom:12px">Napište mi</p>
+      {% if web.email and web.email != "" %}<a class="contact-big" href="mailto:{{ web.email }}">{{ web.email }}</a>{% endif %}
+      <div class="contact-lines">
+        {% if web.instagram and web.instagram != "" %}<a href="https://www.instagram.com/{{ web.instagram | remove: '@' }}/">Instagram @{{ web.instagram | remove: '@' }}</a>{% endif %}
+        {% if web.telefon and web.telefon != "" %}<a href="tel:{{ web.telefon | remove: ' ' }}">{{ web.telefon }}</a>{% endif %}
+        {% if web.mesto and web.mesto != "" %}<span>{{ web.mesto }}</span>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="lightbox" aria-label="Fotografie">
+  <img class="lb-img" src="" alt="">
+  <button type="button" class="lb-btn lb-close">Zavřít ✕</button>
+  <button type="button" class="lb-btn lb-prev" aria-label="Předchozí fotografie">←</button>
+  <button type="button" class="lb-btn lb-next" aria-label="Další fotografie">→</button>
+  <p class="lb-cap"></p>
+</dialog>

@@ -1,0 +1,92 @@
+# Nastavení správy obsahu (Pages CMS – https://pagescms.org)
+media:
+  input: media
+  output: /media
+  categories: [image]
+
+content:
+  - name: photos
+    label: Fotografie
+    type: collection
+    path: _photos
+    filename: "{primary}.md"
+    view:
+      primary: title
+    fields:
+      - name: image
+        label: Fotografie
+        type: image
+        required: true
+      - name: title
+        label: Název
+        type: string
+        required: true
+      - name: rok
+        label: Rok
+        type: string
+      - name: misto
+        label: Místo
+        type: string
+      - name: serie
+        label: Série (fotky se stejným názvem série se dají vyfiltrovat)
+        type: string
+      - name: poradi
+        label: Pořadí (menší číslo = výš na stránce)
+        type: number
+      - name: uvodni
+        label: Zobrazit jako velkou fotku na úvodní stránce
+        type: boolean
+      - name: dvojice
+        label: Dvojice (dvě fotky se stejným slovem, např. "vetve", se ukážou vedle sebe pod galerií)
+        type: string
+
+  - name: poems
+    label: Básně
+    type: collection
+    path: _poems
+    filename: "{primary}.md"
+    view:
+      primary: title
+      sort: poradi
+    fields:
+      - name: title
+        label: Název básně
+        type: string
+        required: true
+      - name: poradi
+        label: Pořadí (menší číslo = výš v seznamu)
+        type: number
+      - name: datum
+        label: Rok vzniku (zobrazí se pod básní)
+        type: string
+      - name: verse
+        label: Text básně (Enter = nový verš, prázdný řádek = nová sloka)
+        type: text
+        required: true
+
+  - name: web
+    label: Úvod a kontakt
+    type: file
+    path: _data/web.yml
+    fields:
+      - name: uvod_basen_text
+        label: Krátká báseň na úvodní fotce
+        type: text
+      - name: uvod_basen_nazev
+        label: Název té básně (zobrazí se pod ní, nepovinné)
+        type: string
+      - name: email
+        label: E-mail
+        type: string
+      - name: instagram
+        label: Instagram (jen jméno, např. lucie.vonkova)
+        type: string
+      - name: telefon
+        label: Telefon
+        type: string
+      - name: mesto
+        label: Město
+        type: string
+      - name: o_mne
+        label: Krátce o mně (nepovinné — když zůstane prázdné, sekce se jmenuje jen Kontakt)
+        type: text
