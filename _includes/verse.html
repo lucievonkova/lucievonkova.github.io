@@ -1,0 +1,8 @@
+{%- assign _lines = include.text | strip | escape | newline_to_br | split: "<br />" -%}
+<div class="verse">
+{%- for _l in _lines -%}
+{%- assign _t = _l | strip_newlines -%}
+{%- assign _s = _t | strip -%}
+{%- if _s == "" -%}<span class="gap"></span>{%- else -%}<span class="l">{{ _t }}</span>{%- endif -%}
+{%- endfor -%}
+</div>

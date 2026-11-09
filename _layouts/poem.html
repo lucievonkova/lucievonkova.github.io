@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{% assign poems = site.poems | sort: "poradi", "last" %}
+{% assign total = poems.size %}
+{% assign idx = 0 %}
+{% for p in poems %}{% if p.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% assign prev_i = idx | minus: 1 %}{% if prev_i < 0 %}{% assign prev_i = total | minus: 1 %}{% endif %}
+{% assign next_i = idx | plus: 1 %}{% if next_i >= total %}{% assign next_i = 0 %}{% endif %}
+<div class="poem-page">
+  <article class="poem">
+    <p class="label">Báseň {{ idx | plus: 1 }} / {{ total }}</p>
+    <h1 class="poem-title">{{ page.title }}</h1>
+    {% include verse.html text=page.verse %}
+    {% if page.datum and page.datum != "" %}<p class="label poem-date">{{ page.datum }}</p>{% endif %}
+    <nav class="poem-nav" aria-label="Další básně">
+      <a href="{{ poems[prev_i].url | relative_url }}" rel="prev">← Předchozí</a>
+      <a href="{{ '/' | relative_url }}#basne">Všechny básně</a>
+      <a href="{{ poems[next_i].url | relative_url }}" rel="next">Další →</a>
+    </nav>
+  </article>
+  <a class="poem-side poem-side-prev" href="{{ poems[prev_i].url | relative_url }}" aria-label="Předchozí báseň: {{ poems[prev_i].title | escape }}"><span aria-hidden="true">←</span><span class="poem-side-title">{{ poems[prev_i].title }}</span></a>
+  <a class="poem-side poem-side-next" href="{{ poems[next_i].url | relative_url }}" aria-label="Další báseň: {{ poems[next_i].title | escape }}"><span class="poem-side-title">{{ poems[next_i].title }}</span><span aria-hidden="true">→</span></a>
+</div>

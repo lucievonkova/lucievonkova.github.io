@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.collection == "poems" %}{{ page.title }} — {% endif %}{{ site.author }} — fotografie a básně</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta name="theme-color" content="#ebe4d6">
+  <link rel="preload" href="{{ '/assets/fonts/lora-400.woff' | relative_url }}" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/inter-400.woff' | relative_url }}" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  {% assign home = '/' | relative_url %}
+  <nav class="nav{% if page.collection == 'poems' %} solid{% endif %}" aria-label="Hlavní navigace">
+    <a class="logo" href="{{ home }}#top">{{ site.title }}</a>
+    <div class="links">
+      <a href="{{ home }}#fotografie">Fotografie</a>
+      <a href="{{ home }}#basne"{% if page.collection == "poems" %} aria-current="page"{% endif %}>Básně</a>
+      <a href="{{ home }}#kontakt">Kontakt</a>
+    </div>
+  </nav>
+
+  <main id="top">
+{{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <span>© {{ site.time | date: "%Y" }} {{ site.author }}</span>
+    <span>Fotografie a texty prosím nepoužívejte bez svolení</span>
+  </footer>
+
+  <script src="{{ '/assets/site.js' | relative_url }}" defer></script>
+</body>
+</html>
