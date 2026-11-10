@@ -1,9 +1,9 @@
 ---
 image: /media/foto-48.jpg
-title: "46"
+title: "42"
 rok: ""
 misto: ""
 serie: ""
-poradi: 46
+poradi: 42
 uvodni: false
 ---

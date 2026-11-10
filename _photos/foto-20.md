@@ -1,9 +1,7 @@
 ---
+published: false
 image: /media/foto-20.jpg
-title: "19"
-rok: ""
-misto: ""
-serie: ""
-poradi: 19
+title: "x"
+poradi: 999
 uvodni: false
 ---

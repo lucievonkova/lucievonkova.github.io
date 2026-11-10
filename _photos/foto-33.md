@@ -1,9 +1,7 @@
 ---
+published: false
 image: /media/foto-33.jpg
-title: "32"
-rok: ""
-misto: ""
-serie: ""
-poradi: 32
+title: "x"
+poradi: 999
 uvodni: false
 ---
