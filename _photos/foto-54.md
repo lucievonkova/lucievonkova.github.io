@@ -1,9 +1,7 @@
 ---
+published: false
 image: /media/foto-54.jpg
-title: "21"
-rok: ""
-misto: ""
-serie: ""
-poradi: 21
+title: "x"
+poradi: 999
 uvodni: false
 ---
