@@ -7,7 +7,7 @@ verse: |
   On: Ale ano.
   Ona: Ach ne!
   On: S deštníkem?
-  Ona: Nekouše!
+  Ona: Nekouše.
   On: Ale já vás mám rád!
   Ona: A proč by ne?
   Oba: Tak, na shledanou.
