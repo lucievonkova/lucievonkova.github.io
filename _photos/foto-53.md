@@ -1,9 +1,9 @@
 ---
 image: /media/foto-53.jpg
-title: "13"
+title: "08"
 rok: ""
 misto: ""
 serie: ""
-poradi: 13
+poradi: 8
 uvodni: false
 ---

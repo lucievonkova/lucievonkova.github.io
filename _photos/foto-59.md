@@ -1,9 +1,9 @@
 ---
 image: /media/foto-59.jpg
-title: "25"
+title: "30"
 rok: ""
 misto: ""
 serie: ""
-poradi: 25
-uvodni: false
+poradi: 30
+uvodni: true
 ---

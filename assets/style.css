@@ -217,3 +217,4 @@ h1, h2, p { margin: 0; }
   .poem-side { background: none; border: 0; padding: 0; }
   .poem-side > span[aria-hidden="true"] { width: 52px; height: 52px; background: rgba(235,228,214,.95); }
 }
+

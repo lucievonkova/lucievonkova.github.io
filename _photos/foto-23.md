@@ -1,9 +1,7 @@
 ---
+published: false
 image: /media/foto-23.jpg
-title: "47"
-rok: ""
-misto: ""
-serie: ""
-poradi: 47
+title: "x"
+poradi: 999
 uvodni: false
 ---
