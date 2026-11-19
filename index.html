@@ -31,17 +31,19 @@ title: Úvod
   {% assign real_series = 0 %}{% for s in series %}{% if s != "" %}{% assign real_series = real_series | plus: 1 %}{% endif %}{% endfor %}
   {% if real_series > 1 %}
   <nav class="series" aria-label="Série" style="margin-bottom:32px">
-    <button type="button" class="series-btn" data-serie="" aria-pressed="true">Vše</button>
     {% for s in series %}{% if s != "" %}<button type="button" class="series-btn" data-serie="{{ s | escape }}" aria-pressed="false">{{ s }}</button>{% endif %}{% endfor %}
+    <button type="button" class="series-btn" data-serie="" aria-pressed="false">Vše</button>
   </nav>
   {% endif %}
   {% assign singles = "" | split: "" %}{% assign paired = "" | split: "" %}
   {% for p in photos %}{% if p.dvojice and p.dvojice != "" %}{% assign paired = paired | push: p %}{% else %}{% assign singles = singles | push: p %}{% endif %}{% endfor %}
   {% assign pair_names = paired | map: "dvojice" | uniq %}
   <div class="grid">
+    {% assign pos = 0 %}
     {% for p in singles %}
+    {% if p.velka %}{% assign pc = "big" %}{% assign pos = 0 %}{% else %}{% assign m = pos | modulo: 4 %}{% assign pc = "pos" | append: m %}{% assign pos = pos | plus: 1 %}{% endif %}
     {% capture cap %}{{ p.title }}{% if p.misto and p.misto != "" %}, {{ p.misto }}{% endif %}{% if p.rok and p.rok != "" %}, {{ p.rok }}{% endif %}{% endcapture %}
-    <button type="button" class="tile photo" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
+    <button type="button" class="tile photo" data-ratio="{{ p.pomer }}" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
       <img src="{{ p.image | relative_url }}" alt="{{ p.title | escape }}" loading="lazy">
       <span class="no">{{ cap | strip }}</span>
     </button>
@@ -52,7 +54,7 @@ title: Úvod
     {% assign group = paired | where: "dvojice", name %}
     {% for p in group %}
     {% capture cap %}{{ p.title }}{% if p.misto and p.misto != "" %}, {{ p.misto }}{% endif %}{% if p.rok and p.rok != "" %}, {{ p.rok }}{% endif %}{% endcapture %}
-    <button type="button" class="tile photo" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
+    <button type="button" class="tile photo{% if p.velka %} big{% endif %}" data-serie="{{ p.serie | escape }}" data-src="{{ p.image | relative_url }}" data-caption="{{ cap | strip | escape }}" aria-label="Zobrazit fotografii {{ p.title | escape }}">
       <img src="{{ p.image | relative_url }}" alt="{{ p.title | escape }}" loading="lazy">
       <span class="no">{{ cap | strip }}</span>
     </button>

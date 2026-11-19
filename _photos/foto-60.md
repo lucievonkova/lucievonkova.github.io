@@ -1,9 +1,10 @@
 ---
 image: /media/foto-60.jpg
-title: "12"
+title: "15"
 rok: ""
 misto: ""
 serie: ""
-poradi: 12
+poradi: 15
+pomer: 0.8359
 uvodni: false
 ---

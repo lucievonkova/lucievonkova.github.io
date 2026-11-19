@@ -218,3 +218,17 @@ h1, h2, p { margin: 0; }
   .poem-side > span[aria-hidden="true"] { width: 52px; height: 52px; background: rgba(235,228,214,.95); }
 }
 
+
+/* Galerie v řádcích: fotky v jedné řadě mají stejnou výšku a vyplní celou šířku, nic se neořezává */
+.grid { columns: auto; display: flex; flex-wrap: wrap; gap: 14px; }
+.grid .tile { margin: 0; flex: 0 0 auto; }
+.grid .tile img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 699px) {
+  .grid { gap: 28px; }
+  .grid .tile { width: 100% !important; height: auto !important; }
+  .grid .tile img { height: auto; }
+}
+
+/* Úvodní fotka vždy celá, bez ořezu – text může být přes ni */
+.hero { background: #948a74; } /* okrově šedá */
+.hero > img { object-fit: contain; object-position: left center; transform: none; animation: none; }

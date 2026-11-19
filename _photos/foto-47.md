@@ -1,9 +1,11 @@
 ---
 image: /media/foto-47.jpg
-title: "47"
+title: "49"
 rok: ""
 misto: ""
 serie: ""
-poradi: 47
+poradi: 49
+velka: true
+pomer: 0.7500
 uvodni: false
 ---

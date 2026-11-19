@@ -5,5 +5,6 @@ rok: ""
 misto: ""
 serie: ""
 poradi: 3
+pomer: 0.7860
 uvodni: false
 ---

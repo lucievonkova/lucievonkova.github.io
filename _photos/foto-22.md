@@ -1,9 +1,10 @@
 ---
 image: /media/foto-22.jpg
-title: "10"
+title: "13"
 rok: ""
 misto: ""
 serie: ""
-poradi: 10
-uvodni: false
+poradi: 13
+pomer: 1.3333
+uvodni: true
 ---

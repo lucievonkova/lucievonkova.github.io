@@ -1,9 +1,10 @@
 ---
 image: /media/foto-19.jpg
-title: "06"
+title: "07"
 rok: ""
 misto: ""
 serie: ""
-poradi: 6
+poradi: 7
+pomer: 0.7500
 uvodni: false
 ---

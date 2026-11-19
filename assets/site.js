@@ -25,6 +25,35 @@
       tiles.forEach(function (t) { t.hidden = s !== '' && t.getAttribute('data-serie') !== s; });
     });
   });
+  if (buttons.length) buttons[0].click();
+
+  // Řádky stejné výšky přes celou šířku (jako na výstavní stěně)
+  var grid = document.querySelector('.grid');
+  function ratio(t) {
+    var r = parseFloat(t.getAttribute('data-ratio'));
+    if (r > 0) return r;
+    var im = t.querySelector('img');
+    return (im && im.naturalWidth) ? im.naturalWidth / im.naturalHeight : 1;
+  }
+  function justify() {
+    if (!grid) return;
+    var vis = tiles.filter(function (t) { return !t.hidden && grid.contains(t); });
+    var W = grid.clientWidth - 1;
+    if (window.innerWidth < 700) { vis.forEach(function (t) { t.style.width = ''; t.style.height = ''; }); return; }
+    var gap = parseFloat(getComputedStyle(grid).columnGap) || 14;
+    var target = Math.max(240, Math.min(400, W * 0.3));
+    var row = [], sum = 0;
+    function place(h) { row.forEach(function (t) { t.style.height = h + 'px'; t.style.width = (ratio(t) * h) + 'px'; }); row = []; sum = 0; }
+    vis.forEach(function (t) {
+      row.push(t); sum += ratio(t);
+      if (sum * target + gap * (row.length - 1) >= W) place((W - gap * (row.length - 1)) / sum);
+    });
+    if (row.length) place(target);
+  }
+  justify();
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(justify, 120); });
+  buttons.forEach(function (b) { b.addEventListener('click', justify); });
+  tiles.forEach(function (t) { if (!t.getAttribute('data-ratio')) { var im = t.querySelector('img'); if (im) im.addEventListener('load', justify); } });
 
   var box = document.querySelector('.lightbox');
   if (!box || typeof box.showModal !== 'function') return;
