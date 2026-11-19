@@ -9,6 +9,7 @@ title: Úvod
 {% unless hero %}{% assign hero = photos | first %}{% endunless %}
 
 <header class="hero">
+  <div class="hero-frame">
   {% if hero %}<img src="{{ hero.image | relative_url }}" alt="{{ hero.title | escape }}">{% endif %}
   <div class="hero-txt">
     <h1 class="hero-name">{{ site.author | split: " " | first }}<br><em>{{ site.author | split: " " | last }}</em></h1>
@@ -19,6 +20,7 @@ title: Úvod
         {% if web.uvod_basen_nazev and web.uvod_basen_nazev != "" %}<p class="label">— {{ web.uvod_basen_nazev }}</p>{% endif %}
       {% endif %}
     </div>
+  </div>
   </div>
 </header>
 

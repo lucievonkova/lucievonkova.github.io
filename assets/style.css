@@ -229,6 +229,29 @@ h1, h2, p { margin: 0; }
   .grid .tile img { height: auto; }
 }
 
-/* Úvodní fotka vždy celá, bez ořezu – text může být přes ni */
-.hero { background: #948a74; } /* okrově šedá */
-.hero > img { object-fit: contain; object-position: left center; transform: none; animation: none; }
+/* Úvodní fotka vždy celá, bez ořezu – jméno a báseň leží přímo na fotce */
+.hero {
+  height: auto; min-height: 0; overflow: visible;
+  display: flex; justify-content: flex-start; align-items: flex-start;
+  background: #948a74; /* okrově šedá */
+}
+.hero::after { display: none; }
+.hero-frame { position: relative; display: inline-block; max-width: 100%; }
+.hero-frame > img {
+  display: block; width: auto; height: auto;
+  max-width: 100%; max-height: 100svh;
+}
+.hero-frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(270deg, rgba(52,40,30,.55) 0%, rgba(52,40,30,.2) 35%, rgba(52,40,30,0) 60%),
+    linear-gradient(180deg, rgba(43,38,32,.3) 0%, rgba(43,38,32,0) 22%, rgba(43,38,32,.15) 50%, rgba(52,40,30,.8) 100%);
+}
+.hero-frame .hero-txt { left: clamp(20px, 3.5vw, 48px); right: clamp(20px, 3.5vw, 48px); bottom: clamp(20px, 5vh, 56px); }
+.hero-frame .hero-name { font-size: clamp(40px, 7vw, 116px); }
+/* Na mobilu by se text do malé fotky nevešel – jméno a báseň jsou pod ní */
+@media (max-width: 760px) {
+  .hero { padding-top: 64px; }
+  .hero-frame::after { display: none; }
+  .hero-frame .hero-txt { position: static; padding: 28px 20px 36px; text-shadow: none; }
+}
