@@ -1,10 +1,10 @@
 ---
 image: /media/foto-01.jpg
-title: "26"
+title: "27"
 rok: ""
 misto: ""
 serie: ""
-poradi: 26
+poradi: 27
 pomer: 0.7500
 uvodni: false
 ---

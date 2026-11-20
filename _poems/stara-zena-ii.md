@@ -1,5 +1,5 @@
 ---
-title: "Stará žena II"
+title: "Stará žena"
 poradi: 0
 datum: "2026"
 verse: |

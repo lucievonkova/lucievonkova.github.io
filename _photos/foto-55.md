@@ -1,10 +1,10 @@
 ---
 image: /media/foto-55.jpg
-title: "03"
+title: "08"
 rok: ""
 misto: ""
 serie: ""
-poradi: 3
+poradi: 8
 pomer: 0.7860
 uvodni: false
 ---

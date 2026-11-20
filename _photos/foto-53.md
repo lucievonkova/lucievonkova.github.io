@@ -1,10 +1,10 @@
 ---
 image: /media/foto-53.jpg
-title: "14"
+title: "15"
 rok: ""
 misto: ""
 serie: ""
-poradi: 14
+poradi: 15
 velka: true
 pomer: 0.8500
 uvodni: false
