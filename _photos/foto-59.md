@@ -6,5 +6,5 @@ misto: ""
 serie: ""
 poradi: 32
 pomer: 1.3734
-uvodni: true
+uvodni: false
 ---

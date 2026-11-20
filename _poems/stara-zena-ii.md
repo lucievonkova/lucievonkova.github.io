@@ -1,7 +1,7 @@
 ---
 title: "Stará žena II"
 poradi: 0
-datum: "listopad 2026"
+datum: "2026"
 verse: |
   Je listopad.
   Nejeleni bezhlasně dlí v truchlavě.

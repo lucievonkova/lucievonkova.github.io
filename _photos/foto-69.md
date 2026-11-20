@@ -1,4 +1,5 @@
 ---
+published: false
 image: /media/foto-69.jpg
 title: "11"
 rok: ""
